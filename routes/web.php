@@ -20,3 +20,4 @@ Route::get('/', [ShopController::class, 'index']);
 Route::get('/shops/create', [ShopController::class, 'create']);
 Route::get('/shops/{shop}', [ShopController::class ,'show']);
 Route::post('/shops', [ShopController::class, 'store']);
+
