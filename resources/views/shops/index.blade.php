@@ -8,6 +8,7 @@
     </head>
     <body>
         <h1>古着屋巡り用のブログ</h1>
+        <a href='/shops/create'>投稿する</a>
         <div class='shops'>
             @foreach ($shops as $shop)
                 <div class='shop'>

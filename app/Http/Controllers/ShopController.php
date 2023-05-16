@@ -16,4 +16,16 @@ class ShopController extends Controller
     {
         return view('shops/show')->with(['shop' => $shop]);
     }
+    
+    public function create()
+    {
+        return view('shops/create');
+    }
+    
+    public function store(Request $request, Shop $shop)
+    {
+        $input = $request['post'];
+        $shop->fill($input)->save();
+        return redirect('/shops/' . $shop->id);
+    }
 }
