@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Shop;
 
+
 class ShopController extends Controller
 {
     public function index(Shop $shop)
@@ -25,6 +26,7 @@ class ShopController extends Controller
     public function store(Request $request, Shop $shop)
     {
         $input = $request['post'];
+        //dd($input);
         $shop->fill($input)->save();
         return redirect('/shops/' . $shop->id);
     }

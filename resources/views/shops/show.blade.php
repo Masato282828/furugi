@@ -16,6 +16,11 @@
                 <p>{{ $shop->overview }}</p>    
             </div>
         </div>
+        <div class="address">
+        <h3>
+            {{ $shop->address }}
+        </h3>
+        </div>
         <div class="footer">
             <a href="/">戻る</a>
         </div>
