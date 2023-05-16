@@ -16,5 +16,8 @@
                 </div>
             @endforeach    
         </div>
+        <div class='paginate'>
+            {{ $shops->links() }}
+        </div>
     </body>
 </html>

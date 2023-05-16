@@ -16,5 +16,5 @@ use App\Http\Controllers\ShopController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/shops', [ShopController::class, 'shops']);
-Route::get('/shops/{shop}', [ShopController::class, 'show']);
+Route::get('/', [ShopController::class, 'index']);
+Route::get('/shops/{shop}', [ShopController::class ,'show']);
