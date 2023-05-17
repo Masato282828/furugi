@@ -43,4 +43,10 @@ class ShopController extends Controller
         
         return redirect('/shops/' . $shop->id);
     }
+    
+    public function delete(Shop $shop)
+    {
+        $shop->delete();
+        return redirect('/');
+    }
 }
