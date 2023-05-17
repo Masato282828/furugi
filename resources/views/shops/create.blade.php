@@ -5,7 +5,11 @@
         <title>Flog</title>
     </head>
     <body>
-        <h1>古着屋巡り用のブログ</h1>
+        <x-app-layout>
+            <x-slot name="header">
+                <h1>古着屋巡り用のブログ</h1>
+                 {{ Auth::user()->name }}
+            </x-slot>
         <form action="/shops" method="POST">
             @csrf
             <div class="name">
@@ -25,5 +29,6 @@
         <div class="footer">
             <a href="/">戻る</a>
         </div>
+        </x-app-layout>
     </body>
 </html>

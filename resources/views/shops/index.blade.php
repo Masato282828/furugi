@@ -7,7 +7,11 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <h1>古着屋巡り用のブログ</h1>
+        <x-app-layout>
+            <x-slot name="header">
+                <h1>古着屋巡り用のブログ</h1>
+                {{ Auth::user()->name }}
+            </x-slot>
         <a href='/shops/create'>投稿する</a>
         <div class='shops'>
             @foreach ($shops as $shop)
@@ -17,6 +21,7 @@
                 </div>
             @endforeach    
         </div>
+        </x-app-layout>    
         <div class='paginate'>
             {{ $shops->links() }}
         </div>
