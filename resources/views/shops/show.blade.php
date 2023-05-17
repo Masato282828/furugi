@@ -22,9 +22,12 @@
             </div>
         </div>
         <div class="address">
-        <h3>
-            {{ $shop->address }}
-        </h3>
+            <h3>
+                {{ $shop->address }}
+            </h3>
+        </div>
+        <div class="footer">
+            <a href="/shops/{{ $shop->id }}/edit">編集</a>
         </div>
         <div class="footer">
             <a href="/">戻る</a>

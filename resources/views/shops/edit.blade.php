@@ -10,24 +10,25 @@
                 <h1>古着屋巡り用のブログ</h1>
                  {{ Auth::user()->name }}
             </x-slot>
-        <form action="/shops" method="POST">
+        <form action="/shops/{{ $shop->id }}" method="POST">
             @csrf
+            @method('PUT')
             <div class="name">
                 <h2>Name</h2>
-                <input type="text" name="post[name]" placeholder="古着屋名"/>
+                <input type="text" name="shop[name]" placeholder="古着屋名" value={{ $shop->name }}>
             </div>
             <div class="overview">
                 <h2>Overview</h2>
-                <textarea name="post[overview]" placeholder="この古着屋の詳細を教えてください"></textarea>
+                <textarea name="shop[overview]" placeholder="この古着屋の詳細を教えてください">{{ $shop->overview }}</textarea>
             </div>
             <div class="address">
                 <h2>Address</h2>
-                <textarea name="post[address]" placeholder="この古着屋の住所を教えてください"></textarea>
+                <textarea name="shop[address]" placeholder="この古着屋の住所を教えてください"></textarea>
             </div>
-            <input type="submit" value="保存"/>
+            <input type="submit" value="update"/>
         </form>
         <div class="footer">
-            <a href="/">戻る</a>
+            <a href="/shops{{ $shop->id }}">戻る</a>
         </div>
         </x-app-layout>
     </body>
