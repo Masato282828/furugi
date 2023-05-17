@@ -28,6 +28,7 @@ Route::controller(ShopController::class)->middleware(['auth'])->group(function()
     Route::get('/shops/create', 'create')->name('create');
     Route::get('/shops/{shop}', 'show')->name('show');
     Route::put('/shops/{shop}', 'update')->name('update');
+    Route::delete('/shops/{shop}', 'delete')->name('delete');
     Route::get('/shops/{shop}/edit', 'edit')->name('edit');
 });
 
