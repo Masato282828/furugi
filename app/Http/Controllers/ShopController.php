@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Http\Requests\PostRequest;
-
+use App\Models\Category;
 
 class ShopController extends Controller
 {
@@ -19,15 +19,15 @@ class ShopController extends Controller
         return view('shops/show')->with(['shop' => $shop]);
     }
     
-    public function create()
-    {
-        return view('shops/create');
-    }
-    
     public function store(Request $request, Shop $shop)
     {
-        $input = $request['post'];
+        $input = $request['shop'];
+        $input_categories=$request['category'];
         $shop->fill($input)->save();
+            foreach($input_categories as $input_category)  {
+                $shop->categories()->attach( $input_category);
+            };
+            
         return redirect('/shops/' . $shop->id);
     }
     
@@ -40,7 +40,6 @@ class ShopController extends Controller
     {
         $input_shop = $request['shop'];
         $shop->fill($input_shop)->save();
-        
         return redirect('/shops/' . $shop->id);
     }
     
@@ -48,5 +47,10 @@ class ShopController extends Controller
     {
         $shop->delete();
         return redirect('/');
+    }
+    
+    public function create(Category $category)
+    {
+        return view('shops/create')->with(['categories' => $category->get()]);
     }
 }

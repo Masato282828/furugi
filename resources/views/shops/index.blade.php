@@ -18,6 +18,17 @@
                 <div class='shop'>
                     <a href="/shops/{{ $shop->id }}"><h2 class='name'>{{ $shop->name }}</h2></a>
                     <p class='overview'>{{ $shop->overview }}</p>
+                    {{-- 古着屋が置いている商品のカテゴリーを表示する　--}}
+                    <div class='shops'>
+                        この古着屋が置いているアイテムカテゴリー
+                        <h5 class='category'>
+                        {{--　ある古着屋に関連するカテゴリーの数だけ繰り返す　--}}
+                        @foreach($shop->categories as $category)
+                            {{ $category->name }}
+                        @endforeach
+                        </h5>
+                    </div>
+                    
                     <form action="/shops/{{ $shop->id }}" id="form_{{ $shop->id }}" method="post">
                         @csrf
                         @method('DELETE')

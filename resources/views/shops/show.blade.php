@@ -26,6 +26,15 @@
                 {{ $shop->address }}
             </h3>
         </div>
+        この古着屋が置いているアイテムカテゴリー:
+            <h5 class='category'>
+                            
+                {{--　ある古着屋に関連するカテゴリーの数だけ繰り返す　--}}
+                @foreach($shop->categories as $category)
+                    {{ $category->name }}
+                @endforeach
+                            
+            </h5>
         <div class="footer">
             <a href="/shops/{{ $shop->id }}/edit">編集</a>
         </div>

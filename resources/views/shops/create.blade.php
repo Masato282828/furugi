@@ -14,15 +14,21 @@
             @csrf
             <div class="name">
                 <h2>Name</h2>
-                <input type="text" name="post[name]" placeholder="古着屋名"/>
+                <input type="text" name="shop[name]" placeholder="古着屋名"/>
             </div>
             <div class="overview">
                 <h2>Overview</h2>
-                <textarea name="post[overview]" placeholder="この古着屋の詳細を教えてください"></textarea>
+                <textarea name="shop[overview]" placeholder="この古着屋の詳細を教えてください"></textarea>
             </div>
             <div class="address">
                 <h2>Address</h2>
-                <textarea name="post[address]" placeholder="この古着屋の住所を教えてください"></textarea>
+                <textarea name="shop[address]" placeholder="この古着屋の住所を教えてください"></textarea>
+            </div>
+            <div class="category">
+                <h2>Category</h2>
+                    @foreach($categories as $category)
+                        <input type="checkbox" name="category[]" value="{{ $category->id }}">{{ $category->name }}
+                    @endforeach
             </div>
             <input type="submit" value="保存"/>
         </form>
