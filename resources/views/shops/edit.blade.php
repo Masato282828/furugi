@@ -23,12 +23,15 @@
             </div>
             <div class="address">
                 <h2>Address</h2>
-                <textarea name="shop[address]" placeholder="この古着屋の住所を教えてください"></textarea>
+                <textarea name="shop[address]" placeholder="この古着屋の住所を教えてください">{{ $shop->address }}</textarea>
             </div>
+            <div class="category">
+                <h2>Category</h2>
+            </div>            
             <input type="submit" value="update"/>
         </form>
         <div class="footer">
-            <a href="/shops{{ $shop->id }}">戻る</a>
+            <a href="/">戻る</a>
         </div>
         </x-app-layout>
     </body>
