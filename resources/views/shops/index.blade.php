@@ -28,7 +28,6 @@
                         @endforeach
                         </h5>
                     </div>
-                    
                     <form action="/shops/{{ $shop->id }}" id="form_{{ $shop->id }}" method="post">
                         @csrf
                         @method('DELETE')
