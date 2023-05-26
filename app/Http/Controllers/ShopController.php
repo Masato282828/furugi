@@ -53,4 +53,26 @@ class ShopController extends Controller
     {
         return view('shops/create')->with(['categories' => $category->get()]);
     }
+    
+    public function image(Image $image)
+    {
+        return view('shops/show')->with(['imgs' => $image->get()]);
+    }
+    
+    public function upload(Request $request)
+    {
+        $dir ='/task/furugi/public/imgs';
+        
+        $file_name = $request->file('image')->getClientOriginalName();
+        
+        $request->file('image')->storeAs('pbulic/' . $dir, $file_name);
+        
+        $image = new Image();
+        $image->name = $file_name;
+        $image->path = 'storage/' . $dir . '/' . $file_name;
+        $image->save();
+        
+        return redirect('/');
+        
+    }
 }

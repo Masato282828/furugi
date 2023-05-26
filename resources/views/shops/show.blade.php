@@ -35,6 +35,17 @@
                 @endforeach
                             
             </h5>
+            <?php
+            if (isset($_request['genre'])) {
+            foreach ($_request['genre'] as $category) {
+                echo '<p>', $category, '</p>';
+            }
+            echo'上記のジャンルの古着が置いてあります。';
+            }
+            ?>
+        <img src="{{ url($image) }}">
+        <img src="{{ url('imgs/S.O..jpeg') }}">
+        
         <div class="footer">
             <a href="/shops/{{ $shop->id }}/edit">編集</a>
         </div>

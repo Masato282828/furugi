@@ -30,6 +30,8 @@ Route::controller(ShopController::class)->middleware(['auth'])->group(function()
     Route::put('/shops/{shop}', 'update')->name('update');
     Route::delete('/shops/{shop}', 'delete')->name('delete');
     Route::get('/shops/{shop}/edit', 'edit')->name('edit');
+    Route::get('/shops/like/{id}', 'ShopController@like')->name('like');
+    Route::get('/shops/unlike/{id}', 'ShopController@unlike')->name('unlike');
 });
 
 Route::middleware('auth')->group(function () {
