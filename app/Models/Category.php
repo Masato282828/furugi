@@ -11,6 +11,6 @@ class Category extends Model
     
     public function shops()
     {
-        return $this->belongsToMany(Shop::class);
+        return $this->belongsToMany(Shop::class)>withPivot('is_active');
     }
 }

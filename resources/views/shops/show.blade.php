@@ -10,7 +10,7 @@
         <x-app-layout>
             <x-slot name="header">
                 <h1>古着屋巡り用のブログ</h1>
-                 {{ Auth::user()->name }}
+                <p align="right">{{ Auth::user()->name }}</p>
             </x-slot>
         <h1 class="name">
             {{ $shop->name }}
@@ -26,25 +26,7 @@
                 {{ $shop->address }}
             </h3>
         </div>
-        この古着屋が置いているアイテムカテゴリー:
-            <h5 class='category'>
-                            
-                {{--　ある古着屋に関連するカテゴリーの数だけ繰り返す　--}}
-                @foreach($shop->categories as $category)
-                    {{ $category->name }}
-                @endforeach
-                            
-            </h5>
-            <?php
-            if (isset($_request['genre'])) {
-            foreach ($_request['genre'] as $category) {
-                echo '<p>', $category, '</p>';
-            }
-            echo'上記のジャンルの古着が置いてあります。';
-            }
-            ?>
-        <img src="{{ url($image) }}">
-        <img src="{{ url('imgs/S.O..jpeg') }}">
+        <img src="{{ $shop->image }}">
         
         <div class="footer">
             <a href="/shops/{{ $shop->id }}/edit">編集</a>
