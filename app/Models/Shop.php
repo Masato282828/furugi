@@ -13,7 +13,7 @@ class Shop extends Model
     
     public function getPaginateByLimit(int $limit_count = 5)
     {
-         return $this::with('categories')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+        return $this::orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
     
     protected $fillable = [
@@ -21,11 +21,12 @@ class Shop extends Model
         'overview',
         'address',
         'category_id',
+        'image',
     ];
     
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class)->withPivot('is_active');
     }
     
     public function likes()

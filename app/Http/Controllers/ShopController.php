@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Http\Requests\PostRequest;
 use App\Models\Category;
+use Cloudinary;
+use Illuminate\Support\Facades\DB;
 
 class ShopController extends Controller
 {
@@ -21,18 +23,39 @@ class ShopController extends Controller
     
     public function store(Request $request, Shop $shop)
     {
-        $input = $request['shop'];
         $input_categories=$request['category'];
+        $input = $request['shop'];
+        $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+        $input += ["image" => $image_url];
+        //dd($input);
         $shop->fill($input)->save();
-            foreach($input_categories as $input_category)  {
-                $shop->categories()->attach( $input_category);
-            };
-            
         return redirect('/shops/' . $shop->id);
     }
     
-    public function edit(Shop $shop)
+    public function edit(Shop $shop, Category $categories)
     {
+        //dd($shop->id);
+    
+        //$active_categories=$shop->categories()->wherePivot('is_active', true)->get();
+        $categories=$categories->get();
+        //dd($categories);
+        
+        $shop_categories = DB::table('category_shop')->where('shop_id', $shop->id)->get();
+        function Checkbox($categories, $checks) {
+            foreach ($categories as $category) {
+            $array = json_decode($category, true);
+            dd($array);
+                $array += ['check' => false];
+                foreach ($checks as $check) {
+                    if ($category->name == $check->name) {
+                $category->check = true;
+                break;
+                }  
+            }
+        }
+    }
+        Checkbox($categories, $shop_categories);
+        dd($array);
         return view('shops/edit')->with(['shop' => $shop]);
     }
     
@@ -54,12 +77,7 @@ class ShopController extends Controller
         return view('shops/create')->with(['categories' => $category->get()]);
     }
     
-    public function image(Image $image)
-    {
-        return view('shops/show')->with(['imgs' => $image->get()]);
-    }
-    
-    public function upload(Request $request)
+   public function upload(Request $request)
     {
         $dir ='/task/furugi/public/imgs';
         
@@ -73,6 +91,5 @@ class ShopController extends Controller
         $image->save();
         
         return redirect('/');
-        
     }
 }

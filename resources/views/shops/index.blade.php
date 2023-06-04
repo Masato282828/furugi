@@ -10,7 +10,7 @@
         <x-app-layout>
             <x-slot name="header">
                 <h1>古着屋巡り用のブログ</h1>
-                {{ Auth::user()->name }}
+                <p align="right">{{ Auth::user()->name }}</p>
             </x-slot>
         <a href='/shops/create'>投稿する</a>
         <div class='shops'>
@@ -21,17 +21,17 @@
                     {{-- 古着屋が置いている商品のカテゴリーを表示する　--}}
                     <div class='shops'>
                         この古着屋が置いているアイテムカテゴリー
-                        <h5 class='category'>
+                        {{-- <h5 class='category'>
                         {{--　ある古着屋に関連するカテゴリーの数だけ繰り返す　--}}
-                        @foreach($shop->categories as $category)
+                        {{-- @foreach($shop->categories as $category)
                             {{ $category->name }}
                         @endforeach
-                        </h5>
-                    </div>
+                        </h5> --}}
+                    </div> 
                     <form action="/shops/{{ $shop->id }}" id="form_{{ $shop->id }}" method="post">
                         @csrf
                         @method('DELETE')
-                        <button type="button" onclick="deletePost({{ $shop->id }})">削除</button> 
+                        <p align="right"><button type="button" onclick="deletePost({{ $shop->id }})">削除</button></p> 
                     </form>
                 </div>
             @endforeach    

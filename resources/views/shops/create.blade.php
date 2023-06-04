@@ -8,9 +8,9 @@
         <x-app-layout>
             <x-slot name="header">
                 <h1>古着屋巡り用のブログ</h1>
-                 {{ Auth::user()->name }}
+                <p align="right">{{ Auth::user()->name }}</p>
             </x-slot>
-        <form action="/shops" method="POST">
+        <form action="/shops" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="name">
                 <h2>Name</h2>
@@ -24,30 +24,11 @@
                 <h2>Address</h2>
                 <textarea name="shop[address]" placeholder="この古着屋の住所を教えてください"></textarea>
             </div>
-            <div class="category">
-                <h2>Category</h2>
-                    @foreach($categories as $category)
-                        <input type="checkbox" name="category[]" value="{{ $category->id }}">{{ $category->name }}
-                    @endforeach
-            </div>
-            <form action ="create.blade.php" method="post">
-                <?php
-                $genre=["military", "casual"];
-                foreach ($genre as $category) {
-                    echo '<p>';
-                    echo '<input type ="checkbox" name="genre[]" value="', $category, '">';
-                    echo $category;
-                    echo '</p>';
-                } 
-                ?>
-                <p><input type ="submit" value ="確定"></p>
-            </form>
-            <form method="POST" action="/upload" enctype="multipart/form-data">
-                @csrf
+            <div class="image">
+                <h2>Pictures</h2>
                 <input type="file" name="image">
-                <button>アップロード</button>
-            </form>
-            <input type="submit" value="保存"/>
+            </div>
+            <input type="submit" value="store"/>
         </form>
         <div class="footer">
             <a href="/">戻る</a>

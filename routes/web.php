@@ -32,6 +32,10 @@ Route::controller(ShopController::class)->middleware(['auth'])->group(function()
     Route::get('/shops/{shop}/edit', 'edit')->name('edit');
     Route::get('/shops/like/{id}', 'ShopController@like')->name('like');
     Route::get('/shops/unlike/{id}', 'ShopController@unlike')->name('unlike');
+    Route::get('/shop-redirect', function () {
+    // redirect関数にパスを指定する方法
+    return redirect('/');
+    });
 });
 
 Route::middleware('auth')->group(function () {

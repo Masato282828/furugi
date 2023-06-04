@@ -8,7 +8,7 @@
         <x-app-layout>
             <x-slot name="header">
                 <h1>古着屋巡り用のブログ</h1>
-                 {{ Auth::user()->name }}
+                <p align="right">{{ Auth::user()->name }}</p>
             </x-slot>
         <form action="/shops/{{ $shop->id }}" method="POST">
             @csrf
@@ -27,6 +27,9 @@
             </div>
             <div class="category">
                 <h2>Category</h2>
+                    @foreach($categories as $category)
+                        <input type="checkbox" name="category[]" value="{{ $category->id }}">{{ $category->name }}
+                    @endforeach
             </div>            
             <input type="submit" value="update"/>
         </form>
