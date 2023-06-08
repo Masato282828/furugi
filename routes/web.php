@@ -27,14 +27,25 @@ Route::controller(ShopController::class)->middleware(['auth'])->group(function()
     Route::post('/shops', 'store')->name('store');
     Route::get('/shops/create', 'create')->name('create');
     Route::get('/shops/{shop}', 'show')->name('show');
+    
+    //編集機能
     Route::put('/shops/{shop}', 'update')->name('update');
     Route::delete('/shops/{shop}', 'delete')->name('delete');
     Route::get('/shops/{shop}/edit', 'edit')->name('edit');
-    Route::get('/shops/like/{id}', 'ShopController@like')->name('like');
-    Route::get('/shops/unlike/{id}', 'ShopController@unlike')->name('unlike');
+    
+    //Google Map
+    Route::get('shops');
+    
+    //いいね機能
+    //Route::get('/shops/like/{id}', 'ShopController@like')->name('like');
+    //Route::get('/shops/unlike/{id}', 'ShopController@unlike')->name('unlike');
+    
+    //投稿後にページに戻る
     Route::get('/shop-redirect', function () {
     // redirect関数にパスを指定する方法
     return redirect('/');
+    Route::get('google-autocomplete', [ShopController::class, 'index']);
+    Route::get('result', 'ResultController@currentLocation')->name('result.currentLocation');
     });
 });
 

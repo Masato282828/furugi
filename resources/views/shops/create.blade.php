@@ -24,6 +24,12 @@
                 <h2>Address</h2>
                 <textarea name="shop[address]" placeholder="この古着屋の住所を教えてください"></textarea>
             </div>
+            <div class="category">
+                <h2>Category</h2>
+                    @foreach($categories as $category)
+                        <input type="checkbox" name="category[]" value="{{ $category->id }}">{{ $category->name }}
+                    @endforeach
+            </div>
             <div class="image">
                 <h2>Pictures</h2>
                 <input type="file" name="image">

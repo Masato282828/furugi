@@ -5,7 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Book extends Model
 {
     use HasFactory;
+    
+    public function bookMarks(){
+        return $this->hasMany('App\BookMark');
+    }
 }
