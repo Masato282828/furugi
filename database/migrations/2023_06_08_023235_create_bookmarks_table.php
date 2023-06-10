@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('bookmarks', function (Blueprint $table) {
-            $table->id;
-            $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('shop_id')->unsigned();
-            $table->timestamps();
+        // Schema::create('bookmarks', function (Blueprint $table) {
+        //     $table->id;
+        //     $table->bigInteger('user_id')->unsigned();
+        //     $table->bigInteger('shop_id')->unsigned();
+        //     $table->timestamps();
             
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('article_id')->references('id')->on('shops')->onDelete('cascade');
-		        $table->unique(['user_id', 'shop_id']);
-        });
+        //     $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        //     $table->foreign('article_id')->references('id')->on('shops')->onDelete('cascade');
+		      //  $table->unique(['user_id', 'shop_id']);
+        // });
     }
 
     /**

@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Flog</title>
+        <link rel="stylesheet" href="./css/shops.css">
     </head>
     <body>
         <x-app-layout>
@@ -14,24 +15,28 @@
             @csrf
             @method('PUT')
             <div class="name">
-                <h2>Name</h2>
+                <h2>古着屋名</h2>
                 <input type="text" name="shop[name]" placeholder="古着屋名" value={{ $shop->name }}>
             </div>
             <div class="overview">
-                <h2>Overview</h2>
+                <h2>このお店の詳細</h2>
                 <textarea name="shop[overview]" placeholder="この古着屋の詳細を教えてください">{{ $shop->overview }}</textarea>
             </div>
             <div class="address">
-                <h2>Address</h2>
+                <h2>住所</h2>
                 <textarea name="shop[address]" placeholder="この古着屋の住所を教えてください">{{ $shop->address }}</textarea>
             </div>
             <div class="category">
-                <h2>Category</h2>
+                <h2>このお店が置いている古着のジャンル</h2>
                     @foreach($categories as $category)
-                        <input type="checkbox" name="category[]" value="{{ $category->id }}">{{ $category->name }}
+                        <input type="checkbox" name="category[]" value="{{ $category->id }}">{{ $category->name }}</input>
                     @endforeach
-            </div>            
-            <input type="submit" value="update"/>
+            </div>
+            <div class="image">
+                <h2>店内の写真</h2>
+                <input type="file" name="image" multiple>
+            </div>
+            <input type="submit" value="再投稿"/>
         </form>
         <div class="footer">
             <a href="/">戻る</a>
