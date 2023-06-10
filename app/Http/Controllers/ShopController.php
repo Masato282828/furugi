@@ -37,9 +37,7 @@ class ShopController extends Controller
     
     public function edit(Shop $shop, Category $categories)
     {
-        //dd($shop->id);
-    
-        //$active_categories=$shop->categories()->wherePivot('is_active', true)->get();
+        $active_categories=$shop->categories()->get();
         $categories=$categories->get();
         //dd($categories);
         
@@ -63,13 +61,24 @@ class ShopController extends Controller
     //}
         
         // dd(Checkbox($categories, $shop_categories));
-        return view('shops/edit')->with(['shop' => $shop]);
+        return view('shops/edit')->with(['shop' => $shop, 'categories'=> $categories]);
     }
     
     public function update(PostRequest $request, Shop $shop)
     {
+        $input_categories=$request['category'];
         $input_shop = $request['shop'];
+        if ($request->file('image')==NULL){$image_url =NULL;}
+            else
+            {
+                $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+                $input += ["image" => $image_url];
+            }
+        dd($request->file('image'));
         $shop->fill($input_shop)->save();
+            foreach($input_categories as $input_category)  {
+                    $shop->categories()->attach( $input_category);
+                };
         return redirect('/shops/' . $shop->id);
     }
     

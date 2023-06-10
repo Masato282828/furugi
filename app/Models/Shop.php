@@ -24,13 +24,18 @@ class Shop extends Model
         'image',
     ];
     
+    //public function category()
+    //{
+        
+    //}
+    
     public function categories()
     {
-        return $this->belongsToMany(Category::class)->withPivot('is_active');
+        return $this->belongsToMany(Category::class);
     }
     
-    public function likes()
-    {
-        return $this->hasMany(Like::class, 'shop_id');
-    }
+    // public function likes()
+    // {
+    //     return $this->hasMany(Like::class, 'shop_id');
+    // }
 }
