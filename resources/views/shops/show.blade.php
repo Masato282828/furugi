@@ -15,7 +15,7 @@
                     {{ Auth::user()->name }}
             </x-slot>
         <h1 class="name">
-            <p align="center">{{ $shop->name }}</p>
+            <p align="center"><font size="6">{{ $shop->name }}</font></p>
         </h1>
         <div class="overview">
             <div class="overview__shop">
