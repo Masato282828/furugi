@@ -15,7 +15,7 @@
                 </h1>
                 <p align="right">{{ Auth::user()->name }}</p>
             </x-slot>
-            <form action="/shops/{{ $shop->id }}" method="POST">
+            <form action="/shops/{{ $shop->id }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="name">
