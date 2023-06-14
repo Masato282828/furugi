@@ -8,7 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     protected $fillable = [
-        'name',
-        'path',
+        'shop_id',
+        'image_url',
     ];
+    
+     public function shop()
+    {
+        return $this->belongsTo(Shop::class);
+    }
 }

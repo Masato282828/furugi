@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <title>Flug</title>
+        <title>Fulog</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('/css/shops.css') }}">
@@ -23,7 +23,9 @@
             </div>
         </div>
         <d>
-            <img src="{{ $shop->image }}">
+            @foreach ( $shop->images as $image)
+                <img src="{{ $image->image_url }}" class='w-1/2'>
+            @endforeach
         </d>
         <div class="address">
             <h3>

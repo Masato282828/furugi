@@ -21,7 +21,6 @@ class ShopSeeder extends Seeder
         'name' => 'S.O.',
         'overview' => '幅広いジャンルを取り扱い、お値段も適正で学生にもオススメです！',
         'address' => '〒166-0003 東京都杉並区高円寺南４丁目３０−５ きさらぎハイツ',
-        'image' => 'https://res.cloudinary.com/dfarppx3k/image/upload/v1685784472/nm0p2tjajik6rxuwe9kj.jpg',
         'created_at' => new DateTime(),
         'updated_at' => new DateTime(),
         'deleted_at' => null,
