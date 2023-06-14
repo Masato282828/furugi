@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Shop;
+use App\Models\Image;
 use App\Http\Requests\PostRequest;
 use App\Models\Category;
 use Cloudinary;
@@ -25,13 +26,24 @@ class ShopController extends Controller
     {
         $input_categories=$request['category'];
         $input = $request['shop'];
-        $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
-        $input += ["image" => $image_url];
-        //dd($input);
+        $images = $request['image'];
+        //dd($images);
         $shop->fill($input)->save();
             foreach($input_categories as $input_category)  {
                 $shop->categories()->attach( $input_category);
             };
+            foreach ($images as $img) {
+                $image = new Image();
+                $shop_id=DB::table('shops')->latest('id')->first()->id;
+                $image_url = Cloudinary::upload($img->getRealPath())->getSecurePath();
+                //$image->image_url = $image_url;
+                //dd($shop_id);
+                //$image->shop_id=$shop_id;
+                //dd($shop_id);
+                //dd($image);
+                //dd($request->all());
+                $image->fill(['image_url' => $image_url,'shop_id' => $shop_id])->save();
+            }
         return redirect('/shops/' . $shop->id);
     }
     
@@ -74,7 +86,6 @@ class ShopController extends Controller
                 $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
                 $input += ["image" => $image_url];
             }
-        dd($request->file('image'));
         $shop->fill($input_shop)->save();
             foreach($input_categories as $input_category)  {
                     $shop->categories()->attach( $input_category);

@@ -21,13 +21,12 @@ class Shop extends Model
         'overview',
         'address',
         'category_id',
-        'image',
     ];
     
-    //public function category()
-    //{
-        
-    //}
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
     
     public function categories()
     {
